@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Irati Martínez · Escritura</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,600&family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@1,500;1,700&family=Oswald:wght@500;600&family=DM+Serif+Display:ital@1&display=swap" rel="stylesheet">
+<style>
+  /* Solo los seis colores de la paleta */
+  :root {
+    --orange:    #E67E0A;
+    --amber:     #DDA65C;
+    --tan:       #B08464;
+    --warm-grey: #B8B3AC;
+    --mist:      #BCC6CA;
+    --steel:     #9AB8C4;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; background: var(--warm-grey); color: var(--mist); }
+  body { font-family: 'Oswald', sans-serif; overflow-x: hidden; }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 100vh);
+    height: 200vh;
+  }
+
+  .tile {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    text-decoration: none;
+    color: var(--mist);
+    isolation: isolate;
+  }
+
+  .tile .photo {
+    position: absolute;
+    inset: -4%;
+    background-size: cover;
+    background-position: center;
+    z-index: -2;
+    animation: drift 24s ease-in-out infinite alternate;
+    transition: filter 1.2s ease;
+    filter: saturate(1.05) brightness(.9);
+  }
+  .tile:hover .photo { filter: saturate(1.2) brightness(1); }
+
+  /* Velo en el tono más oscuro de la paleta (tierra) para sostener el texto */
+  .tile::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(176,132,100,.92) 0%, rgba(176,132,100,.45) 55%, rgba(176,132,100,.15) 100%);
+    z-index: -1;
+    transition: background .8s ease;
+  }
+  .tile:hover::before {
+    background: linear-gradient(to top, rgba(230,126,10,.85) 0%, rgba(221,166,92,.35) 60%, rgba(176,132,100,.15) 100%);
+  }
+
+  .text { padding: clamp(18px, 3vw, 44px); max-width: 100%; }
+  .kicker {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(11px, 1vw, 13px);
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .title {
+    font-size: clamp(30px, 4.2vw, 64px);
+    line-height: .98;
+    margin-bottom: 12px;
+    color: var(--mist);
+  }
+  .phrase {
+    font-size: clamp(14px, 1.3vw, 18px);
+    color: var(--mist);
+    max-width: 30ch;
+    line-height: 1.4;
+  }
+
+  /* Tipografías distintas, emparejadas por contraste */
+  .t1 .title { font-family: 'Playfair Display', serif; font-weight: 700; }
+  .t2 .title { font-family: 'Bebas Neue', sans-serif; letter-spacing: .02em; font-size: clamp(42px, 5.6vw, 88px); }
+  .t3 .title { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 700; font-size: clamp(34px, 4.8vw, 72px); }
+  .t4 .title { font-family: 'DM Serif Display', serif; font-style: italic; }
+  .t5 .title { font-family: 'Oswald', sans-serif; font-weight: 600; text-transform: uppercase; letter-spacing: .01em; }
+  .t6 .title { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 600; }
+
+  /* Un tono de la paleta para cada categoría */
+  .t1 .kicker { color: var(--amber); }
+  .t2 .kicker { color: var(--orange); }
+  .t3 .kicker { color: var(--mist); }
+  .t4 .kicker { color: var(--amber); }
+  .t5 .kicker { color: var(--steel); }
+  .t6 .kicker { color: var(--warm-grey); }
+
+  .tile + .tile { box-shadow: -1px 0 0 rgba(188,198,202,.35); }
+
+  .brand {
+    position: fixed;
+    top: 20px;
+    left: 24px;
+    z-index: 10;
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    font-size: 12px;
+    color: var(--amber);
+    pointer-events: none;
+  }
+
+  @keyframes drift {
+    0%   { transform: scale(1)    translate(0, 0); }
+    100% { transform: scale(1.12) translate(-2%, -1.5%); }
+  }
+
+  @media (max-width: 800px) {
+    .grid { grid-template-columns: 1fr; grid-template-rows: none; height: auto; }
+    .tile { height: 100vh; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tile .photo { animation: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="brand">Irati Martínez</div>
+
+<main class="grid">
+
+  <a class="tile t1" href="https://elhype.com/henry-miller-brassai-et-paris-une-histoire-damour/" target="_blank" rel="noopener">
+    <div class="photo" style="background-image:url('img/1-paris.jpg')"></div>
+    <div class="text">
+      <div class="kicker">Ciudad · Cultura</div>
+      <h2 class="title">París, años treinta</h2>
+      <p class="phrase">Miller, Brassaï y una ciudad que los cambió.</p>
+    </div>
+  </a>
+
+  <a class="tile t2" href="https://elhype.com/viaje-estambul-traves-la-literatura-vol-1/" target="_blank" rel="noopener">
+    <div class="photo" style="background-image:url('img/2-estambul.jpg')"></div>
+    <div class="text">
+      <div class="kicker">Viajes · Literatura</div>
+      <h2 class="title">Estambul</h2>
+      <p class="phrase">Un viaje a través de Tanpinar y Pamuk.</p>
+    </div>
+  </a>
+
+  <a class="tile t3" href="https://elhype.com/nueva-york-musa-la-literatura-occidental/" target="_blank" rel="noopener">
+    <div class="photo" style="background-image:url('img/3-nueva-york.jpg')"></div>
+    <div class="text">
+      <div class="kicker">Ciudad · Literatura</div>
+      <h2 class="title">Nueva York, musa de la literatura</h2>
+      <p class="phrase">Viajar a Nueva York a través de doce novelas.</p>
+    </div>
+  </a>
+
+  <a class="tile t4" href="https://elhype.com/tokyo-la-dualidad-espacio/" target="_blank" rel="noopener">
+    <div class="photo" style="background-image:url('img/4-tokio.jpg')"></div>
+    <div class="text">
+      <div class="kicker">Viajes · Cultura</div>
+      <h2 class="title">Tokio, la dualidad de un mismo espacio</h2>
+      <p class="phrase">Neón, templos y baños públicos.</p>
+    </div>
+  </a>
+
+  <a class="tile t5" href="https://www.20minutos.es/cinemania/noticias/10-peliculas-sobre-travestismo-y-transexualidad-que-completaron-nuestra-educacion-109749/" target="_blank" rel="noopener">
+    <div class="photo" style="background-image:url('img/5-cine.jpg')"></div>
+    <div class="text">
+      <div class="kicker">Cine · Diversidad</div>
+      <h2 class="title">Diez películas que completaron nuestra educación</h2>
+      <p class="phrase">Cine sobre identidad y diversidad.</p>
+    </div>
+  </a>
+
+  <a class="tile t6" href="https://www.20minutos.es/cinemania/noticias/woody-allen-guardian-centeno-dia-lluvia-nueva-york-160151/" target="_blank" rel="noopener">
+    <div class="photo" style="background-image:url('img/6-nueva-york-cine.jpg')"></div>
+    <div class="text">
+      <div class="kicker">Cine · Ciudad</div>
+      <h2 class="title">Woody Allen y un día de lluvia en Nueva York</h2>
+      <p class="phrase">Cine, literatura y una ciudad como protagonista.</p>
+    </div>
+  </a>
+
+</main>
+
+</body>
+</html>
